@@ -3,8 +3,14 @@ const tempEl = document.getElementById("temp");
 const windEl = document.getElementById("wind");
 const humidityEl = document.getElementById("humidity");
 const uvEl = document.getElementById("uv");
+const pastSearchEl = document.getElementById('past-search')
+const today = new Date();
+var date = (today.getMonth()+1) + '/' + today.getDate() + '/' + today.getFullYear();
+console.log(date)
 
-function getCityCoords(city){
+renderUserQuery();
+
+function getWeatherApi(city){
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=d91f911bcf2c0f925fb6535547a5ddc9&units=imperial`)
         .then(function (response){
             if(response.status === 404){
@@ -12,47 +18,54 @@ function getCityCoords(city){
             } return response.json();
         })
     .then(handleData);
-        // var lat = data.coord.lat;
-        // var lon = data.coord.lon;
-        // console.log(data)
-        // // getWeatherbyCity();
-        // console.log(data.coord.lon)  
-        // console.log(`weather in ${city} is: `,data);
-    
 }
 
 const userInput = document.querySelector('.form-control');
 const submitBtn = document.querySelector('.btn');
 
 submitBtn.addEventListener('click', handleClick)
-function handleClick(){
+
+function handleClick(event){
+    event.preventDefault();
     const userQuery = userInput.value;
-    getCityCoords(userQuery);
+    getWeatherApi(userQuery);
+    localStorage.setItem('weather', userQuery);
+}
+
+function renderUserQuery(){
+    pastSearchEl.textContent = localStorage.getItem("weather")
 }
 
 function handleData(data){
     console.log(data);
+    const weatherData = data;
+    getWeatherByCoords(weatherData)
     const cityName = data.name;
     const temp = data.main.temp;
     const wind = data.wind.speed;
     const humidity = data.main.humidity;
-    cityNameEl.textContent = cityName;
+    cityNameEl.textContent = cityName + " weather for " + date;
     tempEl.textContent = "Temp: " + temp + " degrees F";
     windEl.textContent = "Wind: " + wind + " MPH";
     humidityEl.textContent = "Humidity: " + humidity + "%";
     console.log(wind)
 }
 
-// function getWeatherbyCity(lat, lon){
-//     fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=d91f911bcf2c0f925fb6535547a5ddc9`)
-//     .then(function(response){
-//         return response.json();
-//     })
-//     .then(function (data){
-//        console.log(data) 
-//     })
-// }
+function getWeatherByCoords(coords){
+    const lat = coords.coord.lat;
+    const lon = coords.coord.lon;
+    fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=d91f911bcf2c0f925fb6535547a5ddc9`)
+    .then(function(response){
+        return response.json();
+    })
+    .then(handleForecast);
+}
 
+function handleForecast(data){
+    console.log(data)
+    const uv = data.current.uvi;
+    uvEl.textContent = 'UV Intex: ' + uv;
+}
 
 
 

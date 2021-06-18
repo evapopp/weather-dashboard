@@ -16,41 +16,83 @@
             Weather Dashboard
         </h1>
     </header>
-    <div class="col-12 d-flex">
-        <section class="search-bar m-2 col-4">
-            <h2 class="d-inline p-2">Search for a City:</h2>
-            <form class='row g-2'>
-                <div class="input-group flex-nowrap">
-                    <input type="text" class="form-control m-2" placeholder="City Name" aria-label="Username" aria-describedby="addon-wrapping">
-                </div>
-                <div class="d-grid p-0 m-2">
-                    <button class="btn btn-primary" type="button">Search</button>
-                </div>
-            </form>
-        </section>    
-        <table class="table table-borderless m-3 col-4">
-            <thread>
-                <tr>
-                    <th scope="col" id="city-name" class="fs-2 fw-bold"></th>
-                </tr>
-            </thread>
-            <tbody>
-                <tr>
-                    <th scope="col" id="temp" class="fs-5"></th>
-                </tr>
-                <tr>
-                    <th scope="col" id="wind" class="fs-5"></th>
-                </tr>
-                <tr>
-                    <th scope="col" id="humidity" class="fs-5"></th>
-                </tr>
-                <tr>
-                    <th scope="col" id="uv" class="fs-5"></th>
-                </tr>
-            </tbody>
-        </table>    
+    <main>
+    <div class="row">
+        <div class="container inline p-2 col-sm-1 col-md-2 col-lg-3 my-2 mx-3">
+            <h2>Search for a City:</h2>
+            <div class="input-group">
+                <input type="text" aria-label="City Name" placeholder="City Name" class="form-control">
+            </div>
+            <div class="p-0">
+                <button class="btn btn-primary my-1 col-md-12" type="button">Search</button>
+            </div>
+        </div>
+        <div class="card d-inline col-sm-10 col-md-9 col-lg-8 my-2 mx-1">
+            <div class="card-body">
+            <h5 class="card-title fs-2 fw-bold" id="city-name"></h5>
+            <p class="card-text fs-5" id="city-name"></p>
+            <p class="card-text fs-5" id="temp"></p>
+            <p class="card-text fs-5" id="wind"></p>
+            <p class="card-text fs-5" id="humidity"></p>
+            <p class="card-text fs-5" id="uv"></p>
+            </div>
+        </div>
     </div>
+    <div class="row mx-2">
+        <div class="list-group inline col-sm-1 col-md-2 col-lg-3 mx-2 gap-2">
+            
+            <button type="button" class="list-group-item list-group-item-action bg-secondary bg-gradient" id="past-search">Dapibus ac facilisis in</button>
+            <button type="button" class="list-group-item list-group-item-action bg-secondary bg-gradient" id="past-search">Morbi leo risus</button>
+            <button type="button" class="list-group-item list-group-item-action bg-secondary bg-gradient" id="past-search">Porta ac consectetur ac</button>
+            <button type="button" class="list-group-item list-group-item-action bg-secondary bg-gradient" id="past-search">Vestibulum at eros</button>
+        </div>
+        <div class="card inline" style="max-width: 14%;">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="card-link">Card link</a>
+              <a href="#" class="card-link">Another link</a>
+            </div>
+          </div>
+          <div class="card" style="max-width: 14%;">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="card-link">Card link</a>
+              <a href="#" class="card-link">Another link</a>
+            </div>
+          </div>
+          <div class="card" style="max-width: 14%;">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="card-link">Card link</a>
+              <a href="#" class="card-link">Another link</a>
+            </div>
+          </div>
+          <div class="card" style="max-width: 14%;">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="card-link">Card link</a>
+              <a href="#" class="card-link">Another link</a>
+            </div>
+          </div>
+          <div class="card" style="max-width: 14%;">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="card-link">Card link</a>
+              <a href="#" class="card-link">Another link</a>
+            </div>
+          </div>
+    </div>
+    </main>
     <script src="./script.js"></script>
-    
 </body>
 </html>
