@@ -7,7 +7,9 @@ const pastSearchEl = document.getElementById('past-search')
 const dailyTempArr = []
 const dailyWindArr = []
 const dailyHumidArr = []
+const iconArr = []
 
+// Retreives date and dates for the following 5 days
 const today = new Date();
 const date = (today.getMonth()+1) + '/' + today.getDate() + '/' + today.getFullYear();
 
@@ -34,8 +36,6 @@ const date5 =(day5.getMonth()+1) + '/' + day5.getDate() + '/' + day5.getFullYear
 const dateArr = [date1, date2, date3, date4, date5];
 
 
-console.log(date)
-
 renderUserQuery();
 
 function getWeatherApi(city){
@@ -53,15 +53,26 @@ const submitBtn = document.querySelector('.btn');
 
 submitBtn.addEventListener('click', handleClick)
 
+function setStorage(userQuery){
+    localStorage.setItem('weather', userQuery);
+}
+
 function handleClick(event){
     event.preventDefault();
     const userQuery = userInput.value;
     getWeatherApi(userQuery);
-    localStorage.setItem('weather', userQuery);
+    setStorage(userQuery)
 }
 
 function renderUserQuery(){
-    pastSearchEl.textContent = localStorage.getItem("weather")
+    const storedCity = localStorage.getItem("weather");
+    const storedBtn = document.createElement("button");
+    storedBtn.classList.add('btn-secondary')
+    storedBtn.classList.add('col-12')
+    const pasteEl = document.getElementById('paste')
+    storedBtn.textContent = storedCity;
+    pasteEl.append(storedBtn);
+
 }
 
 function handleData(data){
@@ -89,8 +100,6 @@ function getWeatherByCoords(coords){
 }
 
 
-
-
 function handleForecast(data){
     console.log(data)
     const uv = data.current.uvi;
@@ -100,9 +109,12 @@ function handleForecast(data){
         const dailyTempEl = document.getElementById(`temp${i}`);
         const dailyWindEl = document.getElementById(`wind${i}`);
         const dailyHumidEl = document.getElementById(`humid${i}`);
+        const iconEl = document.createElement('img');
+        const dailyIcon = data.daily[i].weather[0].icon;
         const dailyTemp = data.daily[i].temp.day;
         const dailyWind = data.daily[i].wind_speed;
         const dailyHumid = data.daily[i].humidity;
+        iconArr.push(dailyIcon);
         dailyTempArr.push(dailyTemp);
         dailyWindArr.push(dailyWind);
         dailyHumidArr.push(dailyHumid);
@@ -110,6 +122,9 @@ function handleForecast(data){
         dailyTempEl.textContent = `Temperature: ${dailyTempArr[i]} degrees`;
         dailyWindEl.textContent = `Wind Speed: ${dailyWindArr[i]} MPH`;
         dailyHumidEl.textContent = `Humidity: ${dailyHumidArr[i]}%`;
+        iconEl.setAttribute('src', `http://openweathermap.org/img/wn/${iconArr[i]}@2x.png`)
+        cardHeaderEl.appendChild(iconEl);
+
     }
 
 }

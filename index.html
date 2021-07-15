@@ -26,10 +26,11 @@
             <div class="p-0">
                 <button class="btn btn-primary my-1 col-md-12" type="button">Search</button>
             </div>
+            <div class="p-0" id='paste'></div>
         </div>
         <div class="card d-inline col-sm-10 col-md-9 col-lg-8 my-2 mx-1">
             <div class="card-body">
-            <h5 class="card-title fs-2 fw-bold" id="city-name"></h5>
+            <h5 class="card-title fs-2 fw-bold" id="city-name">Select a city to get the weather!</h5>
             <p class="card-text fs-5" id="city-name"></p>
             <p class="card-text fs-5" id="temp"></p>
             <p class="card-text fs-5" id="wind"></p>
@@ -38,15 +39,16 @@
             </div>
         </div>
     </div>
-    <div class="row mx-2">
-        <div class="list-group inline col-sm-1 col-md-2 col-lg-3 mx-2 gap-2">
-            
+    <!-- <div class="row mx-2"> -->
+        <!-- <div class="list-group inline col-sm-1 col-md-2 col-lg-3 mx-2 gap-2" id='past-search'>
             <button type="button" class="list-group-item list-group-item-action bg-secondary bg-gradient" id="past-search">Dapibus ac facilisis in</button>
             <button type="button" class="list-group-item list-group-item-action bg-secondary bg-gradient" id="past-search">Morbi leo risus</button>
             <button type="button" class="list-group-item list-group-item-action bg-secondary bg-gradient" id="past-search">Porta ac consectetur ac</button>
-            <button type="button" class="list-group-item list-group-item-action bg-secondary bg-gradient" id="past-search">Vestibulum at eros</button>
-        </div>
-        <div class="card inline" style="max-width: 14%;">
+            <button type="button" class="list-group-item list-group-item-action bg-secondary bg-gradient" id="past-search">Vestibulum at eros</button> --> 
+        <!-- </div> -->
+      <div class="container-fluid justify-content-end">
+        <div class='row'>
+          <div class="card inline mx-2 bg-dark text-light" style="max-width: 18%;">
             <div class="card-body">
               <h5 class="card-title" id='0'>Forecast Day 1</h5>
               <p class="card-text" id ="temp0">Temperature</p>
@@ -54,7 +56,7 @@
               <p class ="card-text"id = "humid0">Humidity</p>
             </div>
           </div>
-          <div class="card" style="max-width: 14%;">
+          <div class="card mx-2 bg-dark text-light" style="max-width: 18%;">
             <div class="card-body">
               <h5 class="card-title" id= '1'>Forecast Day 2</h5>
               <p class="card-text" id ="temp1">Temperature</p>
@@ -62,7 +64,7 @@
               <p class ="card-text"id = "humid1">Humidity</p>
             </div>
           </div>
-          <div class="card" style="max-width: 14%;">
+          <div class="card mx-2 bg-dark text-light" style="max-width: 18%;">
             <div class="card-body">
               <h5 class="card-title" id='2'>Forecast Day 3</h5>
               <p class="card-text" id ="temp2">Temperature</p>
@@ -70,7 +72,7 @@
               <p class ="card-text"id = "humid2">Humidity</p>
             </div>
           </div>
-          <div class="card" style="max-width: 14%;">
+          <div class="card mx-2 bg-dark text-light" style="max-width: 18%;">
             <div class="card-body">
               <h5 class="card-title" id='3'>Forecast Day 4</h5>
               <p class="card-text" id ="temp3">Temperature</p>
@@ -78,16 +80,16 @@
               <p class ="card-text"id = "humid3">Humidity</p>
             </div>
           </div>
-          <div class="card" style="max-width: 14%;">
+          <div class="card mx-2 bg-dark text-light" style="max-width: 18%;">
             <div class="card-body">
               <h5 class="card-title" id='4'>Forecast Day 5</h5>
               <p class="card-text" id ="temp4">Temperature</p>
               <p class ="card-text"id = "wind4">Wind Speed</p>
               <p class ="card-text"id = "humid4">Humidity</p>
-
             </div>
           </div>
-    </div>
+          </div>
+      </div>
     </main>
     <script src="./script.js"></script>
 </body>
