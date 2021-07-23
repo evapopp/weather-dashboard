@@ -38,8 +38,8 @@ const date5 =(day5.getMonth()+1) + '/' + day5.getDate() + '/' + day5.getFullYear
 
 const dateArr = [date1, date2, date3, date4, date5];
 
-// Calls function to be the first item to load on the page
-renderUserQuery();
+// Calls function to check if there is anything in local storage to load to page, if not, user must type in query. 
+checkLocalStorage()
 
 // Retreives weather API data
 function getWeatherApi(city){
@@ -60,25 +60,47 @@ function handleClick(event){
     event.preventDefault();
     const userQuery = userInput.value;
     getWeatherApi(userQuery);
-    setStorage(userQuery)
+    setStorage(userQuery);
 }
 
 // sets localStorage using the city name the user enters
 function setStorage(userQuery){
     storedCityArr.push(userQuery)
-    localStorage.setItem('weather', storedCityArr);
+    localStorage.setItem('weather', JSON.stringify(storedCityArr));
 }
 
 // Renders local storage upon page load
 function renderUserQuery(){
-    const storedCity = localStorage.getItem("weather");
-    const storedBtn = document.createElement("button");
-    storedBtn.classList.add('btn-secondary')
-    storedBtn.classList.add('col-12')
-    const pasteEl = document.getElementById('paste')
-    storedBtn.textContent = storedCity;
-    pasteEl.append(storedBtn);
-
+        const storedCity = JSON.parse(localStorage.getItem("weather"));
+        const storedBtn = document.createElement("button");
+        storedBtn.classList.add('btn-secondary')
+        storedBtn.classList.add('col-12')
+        const pasteEl = document.getElementById('paste')
+        storedBtn.textContent = storedCity[0];
+        pasteEl.append(storedBtn);
+        storedBtn.addEventListener('click', function(){
+            getWeatherApi(storedCity);
+        });
+        const storedCity2 = JSON.parse(localStorage.getItem("weather"));
+        const storedBtn2 = document.createElement("button");
+        storedBtn2.classList.add('btn-secondary')
+        storedBtn2.classList.add('col-12')
+        const pasteEl2 = document.getElementById('paste')
+        storedBtn2.textContent = storedCity2[1];
+        pasteEl2.append(storedBtn2);
+        storedBtn2.addEventListener('click', function(){
+            getWeatherApi(storedCity2);
+        });
+        const storedCity3 = JSON.parse(localStorage.getItem("weather"));
+        const storedBtn3 = document.createElement("button");
+        storedBtn3.classList.add('btn-secondary')
+        storedBtn3.classList.add('col-12')
+        const pasteEl3 = document.getElementById('paste')
+        storedBtn3.textContent = storedCity3[2];
+        pasteEl3.append(storedBtn2);
+        storedBtn3.addEventListener('click', function(){
+            getWeatherApi(storedCity3);
+        });
 }
 
 // Takes data from the API call and appends that data upon page based on parameters indicated 
@@ -137,7 +159,15 @@ function handleForecast(data){
 
 }
 
-
+// Function checks local storage and calls function to append previous queries to page
+function checkLocalStorage (){
+    const checkStorage = localStorage.getItem("weather");
+    if(checkStorage === null){
+    console.log('nothing here')
+    }else {
+        renderUserQuery()
+    }
+}
 
 
     
